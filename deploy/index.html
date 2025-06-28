@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Development Curriculum Roadmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(255, 255, 255, 0.1) 20px,
+                    rgba(255, 255, 255, 0.1) 40px);
+            animation: slide 30s linear infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(-100px);
+            }
+
+            100% {
+                transform: translateX(100px);
+            }
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            border-left: 6px solid #667eea;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .intro p {
+            color: #555;
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0 50px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .phase {
+            margin-bottom: 40px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .phase:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .phase-header {
+            padding: 25px 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .phase-beginner {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+        }
+
+        .phase-intermediate {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+
+        .phase-advanced {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+        }
+
+        .phase-icon {
+            font-size: 2em;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .phase-title {
+            flex: 1;
+        }
+
+        .phase-title h3 {
+            font-size: 1.6em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .phase-goal {
+            opacity: 0.95;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+
+        .phase-content {
+            padding: 35px 30px;
+            background: white;
+        }
+
+        .topics {
+            margin-bottom: 30px;
+        }
+
+        .topics h4 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            border-bottom: 3px solid #ecf0f1;
+            padding-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .topic-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .topic-item:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            transform: translateX(8px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .deliverables {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #feb2b2;
+            box-shadow: 0 5px 15px rgba(254, 178, 178, 0.2);
+        }
+
+        .deliverables h4 {
+            color: #c53030;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .deliverable-item {
+            background: white;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .deliverable-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .deliverable-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .deliverable-icon {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .capstone {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capstone::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(-45deg,
+                    transparent,
+                    transparent 30px,
+                    rgba(255, 255, 255, 0.05) 30px,
+                    rgba(255, 255, 255, 0.05) 60px);
+            animation: slideReverse 25s linear infinite;
+        }
+
+        @keyframes slideReverse {
+            0% {
+                transform: translateX(50px);
+            }
+
+            100% {
+                transform: translateX(-50px);
+            }
+        }
+
+        .capstone h3 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .capstone-description {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            position: relative;
+            z-index: 1;
+            opacity: 0.95;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+            box-shadow: 0 15px 35px rgba(44, 62, 80, 0.3);
+        }
+
+        .overview h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        .roadmap-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .step:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .footer .cta {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .contact:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1c638a 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 40px 25px;
+            }
+
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .content {
+                padding: 40px 25px;
+            }
+
+            .topic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roadmap-steps {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🚀 Backend Development Curriculum</h1>
+            <p class="subtitle">Complete Professional Roadmap to Backend Mastery</p>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <h2>Transform Your Career with Expert Backend Development Training</h2>
+                <p><strong>Designed for:</strong> Aspiring developers seeking comprehensive, industry-ready backend
+                    skills</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Comprehensive Phases</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Backend Languages</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Practical Projects</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Hands-on Learning</span>
+                </div>
+            </div>
+
+            <div class="phase phase-beginner">
+                <div class="phase-header">
+                    <div class="phase-icon">🟢</div>
+                    <div class="phase-title">
+                        <h3>Phase 1: Shell Programming & Linux Fundamentals</h3>
+                        <p class="phase-goal">Master Linux environments and automation</p>
+                    </div>
+                </div>
+                <div class="phase-content">
+                    <div class="topics">
+                        <h4>Core Topics</h4>
+                        <div class="topic-grid">
+                            <div class="topic-item">Introduction to Command Line</div>
+                            <div class="topic-item">File & Directory Management</div>
+                            <div class="topic-item">File Permissions</div>
+                            <div class="topic-item">Redirection and Pipes</div>
+                            <div class="topic-item">Environment Variables</div>
+                            <div class="topic-item">Shell Scripting Basics</div>
+                            <div class="topic-item">Process Management</div>
+                            <div class="topic-item">Package Management (apt, yum)</div>
+                        </div>
+                    </div>
+                    <div class="deliverables">
+                        <h4>✅ Project Deliverables</h4>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>Automation Script for File Backups</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>Log Parsing Script</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase phase-intermediate">
+                <div class="phase-header">
+                    <div class="phase-icon">🟡</div>
+                    <div class="phase-title">
+                        <h3>Phase 2: Puppet Scripting</h3>
+                        <p class="phase-goal">Infrastructure automation and configuration management</p>
+                    </div>
+                </div>
+                <div class="phase-content">
+                    <div class="topics">
+                        <h4>Core Topics</h4>
+                        <div class="topic-grid">
+                            <div class="topic-item">Puppet Architecture & Installation</div>
+                            <div class="topic-item">Manifests and Resources</div>
+                            <div class="topic-item">Variables and Facts</div>
+                            <div class="topic-item">Templates and Modules</div>
+                            <div class="topic-item">Applying Configurations</div>
+                        </div>
+                    </div>
+                    <div class="deliverables">
+                        <h4>✅ Project Deliverables</h4>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>Puppet Manifest for Apache/NGINX Setup</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>User & Permissions Automation Script</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase phase-beginner">
+                <div class="phase-header">
+                    <div class="phase-icon">🟢</div>
+                    <div class="phase-title">
+                        <h3>Phase 3: C Programming</h3>
+                        <p class="phase-goal">Build solid low-level programming fundamentals</p>
+                    </div>
+                </div>
+                <div class="phase-content">
+                    <div class="topics">
+                        <h4>Core Topics</h4>
+                        <div class="topic-grid">
+                            <div class="topic-item">Introduction to C</div>
+                            <div class="topic-item">Data Types & Variables</div>
+                            <div class="topic-item">Operators</div>
+                            <div class="topic-item">Control Flow (if, switch, loops)</div>
+                            <div class="topic-item">Functions</div>
+                            <div class="topic-item">Arrays and Strings</div>
+                            <div class="topic-item">Pointers</div>
+                            <div class="topic-item">Memory Management</div>
+                            <div class="topic-item">Structures</div>
+                            <div class="topic-item">File I/O</div>
+                            <div class="topic-item">Single Linked List</div>
+                            <div class="topic-item">Double Linked List</div>
+                        </div>
+                    </div>
+                    <div class="deliverables">
+                        <h4>✅ Project Deliverables</h4>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>Calculator Program</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>File-Based Record Manager</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>Linked List Implementation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase phase-intermediate">
+                <div class="phase-header">
+                    <div class="phase-icon">🟡</div>
+                    <div class="phase-title">
+                        <h3>Phase 4: JavaScript Programming</h3>
+                        <p class="phase-goal">Master modern JavaScript for backend development</p>
+                    </div>
+                </div>
+                <div class="phase-content">
+                    <div class="topics">
+                        <h4>Core Topics</h4>
+                        <div class="topic-grid">
+                            <div class="topic-item">JavaScript Basics</div>
+                            <div class="topic-item">Control Flow and Loops</div>
+                            <div class="topic-item">Functions and Callbacks</div>
+                            <div class="topic-item">Objects and Arrays</div>
+                            <div class="topic-item">ES6 Features</div>
+                            <div class="topic-item">Async JavaScript (Promises, async/await)</div>
+                            <div class="topic-item">Modules and Error Handling</div>
+                        </div>
+                    </div>
+                    <div class="deliverables">
+                        <h4>✅ Project Deliverables</h4>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>Node.js CLI Tool</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>JSON CRUD Application</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>API Data Fetcher</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase phase-beginner">
+                <div class="phase-header">
+                    <div class="phase-icon">🟢</div>
+                    <div class="phase-title">
+                        <h3>Phase 5: Python Programming</h3>
+                        <p class="phase-goal">Build Python expertise for Django development</p>
+                    </div>
+                </div>
+                <div class="phase-content">
+                    <div class="topics">
+                        <h4>Core Topics</h4>
+                        <div class="topic-grid">
+                            <div class="topic-item">Python Basics and Syntax</div>
+                            <div class="topic-item">Data Types and Variables</div>
+                            <div class="topic-item">Control Flow</div>
+                            <div class="topic-item">Functions</div>
+                            <div class="topic-item">Lists, Dictionaries, Sets</div>
+                            <div class="topic-item">File I/O</div>
+                            <div class="topic-item">Error Handling</div>
+                            <div class="topic-item">Virtual Environments</div>
+                            <div class="topic-item">Modules and Packages</div>
+                            <div class="topic-item">Object-Oriented Programming</div>
+                        </div>
+                    </div>
+                    <div class="deliverables">
+                        <h4>✅ Project Deliverables</h4>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>File Processing Script</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>CLI Utility</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>OOP Mini Project</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase phase-intermediate">
+                <div class="phase-header">
+                    <div class="phase-icon">🟡</div>
+                    <div class="phase-title">
+                        <h3>Phase 6: Node.js Backend Development</h3>
+                        <p class="phase-goal">Create production-ready APIs with Node.js</p>
+                    </div>
+                </div>
+                <div class="phase-content">
+                    <div class="topics">
+                        <h4>Core Topics</h4>
+                        <div class="topic-grid">
+                            <div class="topic-item">Node.js Fundamentals</div>
+                            <div class="topic-item">npm and package.json</div>
+                            <div class="topic-item">HTTP Servers</div>
+                            <div class="topic-item">Express.js Framework</div>
+                            <div class="topic-item">Middleware</div>
+                            <div class="topic-item">Database Integration</div>
+                            <div class="topic-item">Environment Variables</div>
+                            <div class="topic-item">Authentication (JWT)</div>
+                            <div class="topic-item">Error Handling</div>
+                            <div class="topic-item">Deployment (Heroku/DigitalOcean)</div>
+                        </div>
+                    </div>
+                    <div class="deliverables">
+                        <h4>✅ Project Deliverables</h4>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>REST API Project</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>JWT Authentication Flow</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>Deployed Application</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase phase-beginner">
+                <div class="phase-header">
+                    <div class="phase-icon">🟢</div>
+                    <div class="phase-title">
+                        <h3>Phase 7: Django Backend Development</h3>
+                        <p class="phase-goal">Build scalable Python web APIs with Django</p>
+                    </div>
+                </div>
+                <div class="phase-content">
+                    <div class="topics">
+                        <h4>Core Topics</h4>
+                        <div class="topic-grid">
+                            <div class="topic-item">Django Project Structure</div>
+                            <div class="topic-item">Apps, Settings, and Migrations</div>
+                            <div class="topic-item">Django ORM</div>
+                            <div class="topic-item">Admin Interface</div>
+                            <div class="topic-item">Views and Templates</div>
+                            <div class="topic-item">Django REST Framework</div>
+                            <div class="topic-item">Authentication</div>
+                            <div class="topic-item">Deployment</div>
+                        </div>
+                    </div>
+                    <div class="deliverables">
+                        <h4>✅ Project Deliverables</h4>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>Django CRUD Project</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>REST API with Django REST Framework</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>Cloud Deployment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase phase-intermediate">
+                <div class="phase-header">
+                    <div class="phase-icon">🟡</div>
+                    <div class="phase-title">
+                        <h3>Phase 8: Go (Golang) Backend Development</h3>
+                        <p class="phase-goal">Build high-performance backend services with Go</p>
+                    </div>
+                </div>
+                <div class="phase-content">
+                    <div class="topics">
+                        <h4>Core Topics</h4>
+                        <div class="topic-grid">
+                            <div class="topic-item">Introduction to Go</div>
+                            <div class="topic-item">Modules and Workspace</div>
+                            <div class="topic-item">Data Types and Functions</div>
+                            <div class="topic-item">Structs and Interfaces</div>
+                            <div class="topic-item">Error Handling</div>
+                            <div class="topic-item">Building HTTP Servers</div>
+                            <div class="topic-item">REST APIs</div>
+                            <div class="topic-item">PostgreSQL Integration</div>
+                            <div class="topic-item">Environment Configuration</div>
+                            <div class="topic-item">Deployment</div>
+                        </div>
+                    </div>
+                    <div class="deliverables">
+                        <h4>✅ Project Deliverables</h4>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>REST API in Go</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>PostgreSQL Integration</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-icon">✓</span>
+                            <span>Cloud Deployment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="capstone">
+                <h3>🎓 Capstone Project</h3>
+                <p class="capstone-description">Demonstrate mastery with a comprehensive, production-ready backend
+                    system</p>
+                <div class="topic-grid">
+                    <div class="topic-item"
+                        style="background: rgba(255,255,255,0.2); border-left: 4px solid #fff; color: white;">
+                        RESTful API (Node.js, Django, or Go)
+                    </div>
+                    <div class="topic-item"
+                        style="background: rgba(255,255,255,0.2); border-left: 4px solid #fff; color: white;">
+                        Authentication and Authorization
+                    </div>
+                    <div class="topic-item"
+                        style="background: rgba(255,255,255,0.2); border-left: 4px solid #fff; color: white;">
+                        PostgreSQL or MongoDB Integration
+                    </div>
+                    <div class="topic-item"
+                        style="background: rgba(255,255,255,0.2); border-left: 4px solid #fff; color: white;">
+                        Dockerized Deployment
+                    </div>
+                    <div class="topic-item"
+                        style="background: rgba(255,255,255,0.2); border-left: 4px solid #fff; color: white;">
+                        API Documentation (Swagger/OpenAPI)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overview / Roadmap Steps -->
+            <div class="overview">
+                <h3>Complete Learning Journey</h3>
+                <div class="roadmap-steps">
+                    <div class="step">Learn Shell & Linux</div>
+                    <div class="step">Master Puppet</div>
+                    <div class="step">C Programming</div>
+                    <div class="step">JavaScript Essentials</div>
+                    <div class="step">Python for Backend</div>
+                    <div class="step">Node.js API Development</div>
+                    <div class="step">Django Web APIs</div>
+                    <div class="step">Golang Services</div>
+                    <div class="step">Build Capstone Project</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="cta">Ready to kickstart your backend development journey?</div>
+            <a href="mailto:lekanmojibola@gmail.com" class="contact">Contact Us to Get Started</a>
+        </footer>
+    </div>
+</body>
+
+</html>
